@@ -1,6 +1,10 @@
+
+
 //display current date and time in the jumbntron
 $("#currentDay").text(moment().format("dddd, MMMM Do"));
 // document.querySelector("#currentDay").textContent = this is the javascript version of what I'm doing.
+
+
 
 //change background color based on time
 var currentHour = moment().hour();
@@ -18,23 +22,52 @@ $(".hour").each(function () {
 });
 
 
+var timeBlocks = {
+    9: '',
+    10: '',
+    11: '',
+    12: '',
+    1: '',
+    2: '',
+    3: '',
+    4: '',
+    5: '',
+  };
+  
+  loadStoredData();
 
 // Store text entered into an input when clicking save button
 $(".saveBtn").click(function (event) {
   event.preventDefault();
 
-  var hour = $(this).closest().val()
-  var dataEntered = $(this).siblings("textarea").val()
+  var hour = parseInt($(this).siblings("div").text().trim())
+  var dataEntered = $(this).siblings("textarea").val().trim()
+  console.log(timeBlocks[hour])
 
-  localStorage.setItem("",JSON.stringify(dataEntered));
+  timeBlocks[hour] = dataEntered
+
+//   console.log(timeBlocks[hour])
+
+localStorage.setItem("Time Blocks",JSON.stringify(timeBlocks))
+loadStoredData();
 });
 
-//create a variable of the value of the textcontent
-//use .value to get whats in that text content class
-//take that value and set it into local storage- localstorage.setItem
-//do I want to set it as an array/ objecct- do a test first
-//loop through the array
-//use JSONparse and JSON strigify to get them to object from string, and from string to object
-//use "this.siblings" to get the value from the textarea box
-//time- "this.parent.attr.id" and then save that to a variable, and then grab that variable and
-//save it into local storage, will see the time saved as well.
+function loadStoredData() {
+ timeBlocks = JSON.parse(localStorage.getItem("Time Blocks"))
+//loading all time blocks data to html
+//seting the value of all html time slots equal to the value of the timeblocks object
+$("#hour-9 .description").val(timeBlocks[9]);
+$("#hour-10 .description").val(timeBlocks[10]);
+$("#hour-11 .description").val(timeBlocks[11]);
+$("#hour-12 .description").val(timeBlocks[12]);
+$("#hour-13 .description").val(timeBlocks[1]);
+$("#hour-14 .description").val(timeBlocks[2]);
+$("#hour-15 .description").val(timeBlocks[3]);
+$("#hour-16 .description").val(timeBlocks[4]);
+$("#hour-17 .description").val(timeBlocks[5]);
+
+
+}
+
+
+
