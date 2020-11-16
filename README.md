@@ -1,7 +1,7 @@
 # Work Day Scheduler 
 
 ## Desciption
-Work day scheduler made for user to schedule tasks in a business day and sets them into local storage when you press save. The color of the timeslots change based on whether they are in the past, present or future. 
+Work day scheduler made for user to schedule tasks in a business day. The application sets them into local storage when you press save. The color of the timeslots change based on whether they are in the past, present or future. 
 
 ## Tech Used
 * HTML
